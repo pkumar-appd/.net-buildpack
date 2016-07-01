@@ -25,22 +25,27 @@ module NETBuildpack::Framework
       context[:runtime_command] ||= ''
       context[:config_vars] ||= {}
       
-      @version, @uri = Mono.find_mono(@configuration)
+      @version, @uri = AppDynamicsAgent.find(@configuration)
 
       #concat seems to be the way to change the param
       context[:runtime_home].concat MONO_HOME
       context[:runtime_command].concat runtime_command
-      
-      
       end
+      
+      def self.find(configuration)
+          NETBuildpack::Repository::ConfiguredItem.find_item(configuration)
+        rescue => e
+          raise RuntimeError, "Error finding version: #{e.message}", e.backtrace
+      end
+
       
       def detect
        config_files.any? ? "app_settings_auto_reconfiguration" : nil
       end
 
       def compile
-        download(false, @droplet.sandbox, 'AppDynamics Agent')
-        @droplet.copy_resources
+         download(@version, @uri) { |file| expand file }
+         @config_vars["HOME"] = @app_dir
       end
   end
 end
