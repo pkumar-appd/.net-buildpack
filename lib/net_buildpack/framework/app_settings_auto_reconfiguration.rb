@@ -26,7 +26,8 @@ module NETBuildpack::Framework
     def initialize(context)
       super('AppSettings Auto-reconfiguration', context)
       @version, @uri = AppSettingsAutoReconfiguration.find(@configuration)
-
+      print @version
+      print @uri
     end
 
     # Detects whether there is a config file to be modified
