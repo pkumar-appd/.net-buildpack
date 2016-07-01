@@ -25,9 +25,6 @@ module NETBuildpack::Framework
 
     def initialize(context)
       super('AppSettings Auto-reconfiguration', context)
-      @version, @uri = AppSettingsAutoReconfiguration.find(@configuration)
-      print @version
-      print @uri
     end
 
     # Detects whether there is a config file to be modified
@@ -38,9 +35,6 @@ module NETBuildpack::Framework
     end
 
     def compile
-      print @version
-      print @uri
-      download(@version, @uri) { |file| expand file }
       time_operation "Preparing AppSettingsAutoReconfiguration.exe" do
         vendor_dir = File.join(@app_dir, 'vendor')
         FileUtils.mkdir_p vendor_dir
