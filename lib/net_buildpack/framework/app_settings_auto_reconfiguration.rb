@@ -47,6 +47,7 @@ module NETBuildpack::Framework
     end
 
     def release
+      print "test"
       config_files.each do |config_file|
         file = config_file.gsub @app_dir, "$HOME" #make relative 
         @start_script[:init] << "mono $HOME/vendor/AppSettingsAutoReconfiguration.exe #{file}"
