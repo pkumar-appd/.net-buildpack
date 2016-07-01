@@ -23,5 +23,5 @@ containers:
   - "NETBuildpack::Container::Procfile"
 frameworks:
   - "NETBuildpack::Framework::AppDynamicsAgent"
-  #- "NETBuildpack::Framework::AppSettingsAutoReconfiguration"
+  - "NETBuildpack::Framework::AppSettingsAutoReconfiguration"
   
