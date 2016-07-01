@@ -24,6 +24,8 @@ module NETBuildpack::Framework
         context[:config_vars] ||= {}
       
         @version, @uri = AppDynamicsAgent.find(@configuration)
+        print @version
+        print @uri
 
         #concat seems to be the way to change the param
         context[:runtime_home].concat MONO_HOME
