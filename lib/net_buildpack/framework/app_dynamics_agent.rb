@@ -33,12 +33,20 @@ module NETBuildpack::Framework
       end
 
       def detect
-       config_files.any? ? "app_settings_auto_reconfiguration" : nil
+       config_files.any? ? "app_dynamics_agent" : nil
       end
 
       def compile
          download(@version, @uri) { |file| expand file }
-         @config_vars["HOME"] = @app_dir
+         time_operation "Preparing AppSettingsAutoReconfiguration.exe" do
+         vendor_dir = File.join(@app_dir, 'vendor')
+         FileUtils.mkdir_p vendor_dir
+
+         FileUtils.cp File.join(resources_dir, 'AppDynamicsAgent', 'bin', 'AppDynamicsAgent.exe'),\
+                     File.join(vendor_dir, 'AppDynamicsAgent.exe')
+
+         ensure_config_is_lowercase
+      end
       end
       
       def release
