@@ -48,6 +48,8 @@ module NETBuildpack::Framework
 
     def release
       print "test"
+      print env
+      print ENV['VCAP_SERVICES']
       config_files.each do |config_file|
         file = config_file.gsub @app_dir, "$HOME" #make relative 
         @start_script[:init] << "mono $HOME/vendor/AppSettingsAutoReconfiguration.exe #{file}"
