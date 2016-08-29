@@ -1,6 +1,6 @@
 ---
 version: 4.+
-repository_root: "{default.repository.root}/app-dynamics"
+repository_root: "https://aperture.appdynamics.com/download/prox/download-file/dotnet/4.2.5.1/dotNetAgentSetup-4.2.5.1.msi"
 default_application_name: 
 default_node_name: $(ruby -e "require 'json' ; a = JSON.parse(ENV['VCAP_APPLICATION']);
   puts \"#{a['application_name']}:#{a['instance_index']}\"")
