@@ -26,7 +26,6 @@ cache_dir = ARGV[1]
 
 begin
   NETBuildpack::Buildpack.new(build_dir).compile
-  wget "https://aperture.appdynamics.com/download/prox/download-file/dotnet/4.2.5.1/dotNetAgentSetup-4.2.5.1.msi"
 rescue => e
   puts "Compile failed with exception #{e.inspect}"
   puts "at: "
